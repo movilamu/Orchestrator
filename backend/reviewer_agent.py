@@ -16,8 +16,15 @@ class ReviewerError(Exception):
     pass
 
 
-# Instantiate once; expects GROQ_API_KEY in the environment.
-_client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
+# Built lazily (not at import time) — see triage_agent.py for why.
+_client = None
+
+
+def _get_client():
+    global _client
+    if _client is None:
+        _client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
+    return _client
 
 
 REVIEWER_SYSTEM_PROMPT = """You are a strict QA reviewer for customer support replies.
@@ -96,7 +103,7 @@ def run_reviewer(ticket: dict, draft: dict) -> dict:
     user_prompt = _build_user_prompt(ticket, draft)
 
     try:
-        response = _client.chat.completions.create(
+        response = _get_client().chat.completions.create(
             model="llama-3.1-8b-instant",
             messages=[
                 {"role": "system", "content": REVIEWER_SYSTEM_PROMPT},
