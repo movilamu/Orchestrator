@@ -1,0 +1,103 @@
+:root {
+  /* ===== Enterprise theme palette — do not extend or deviate ===== */
+  --color-navy: #0F4C81;
+  --color-blue: #2563EB;
+  --color-bg: #F7F8FA;
+  --color-card: #FFFFFF;
+  --color-success: #16A34A;
+  --color-escalate: #DC2626;
+  --color-text-primary: #111827;
+  --color-text-secondary: #6B7280;
+  --color-border: #E5E7EB;
+
+  /* Status badge colors — exact values, not derived */
+  --badge-send-bg: #DCFCE7;
+  --badge-send-text: #166534;
+  --badge-escalate-bg: #FEE2E2;
+  --badge-escalate-text: #DC2626;
+
+  /* Flat low-opacity single-tone tints (no gradients) */
+  --tint-blue: #EFF4FE;
+  --tint-navy: #EAF1F8;
+  --tint-neutral: #F3F4F6;
+  --tint-success: #F0FDF4;
+  --tint-escalate: #FFFBEB;
+
+  /* Fallback status — distinct from error/escalate, added for the
+     contract's status: "fallback" value, previously unrepresented
+     visually anywhere in the UI. */
+  --color-fallback: #B45309;
+  --tint-fallback: #FFFBEB;
+  --badge-fallback-bg: #FEF3C7;
+  --badge-fallback-text: #92400E;
+
+  /* One additional neutral tier: separates app chrome (sidebar/topbar)
+     from the content canvas without introducing a new hue. */
+  --color-surface-sunken: #F0F1F4;
+
+  /* Type scale */
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* Spacing scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+
+  /* Radius / shadow — enterprise, restrained */
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
+  --shadow-card: 0 1px 2px rgba(17, 24, 39, 0.04), 0 4px 12px rgba(17, 24, 39, 0.04);
+  --shadow-card-hover: 0 2px 4px rgba(17, 24, 39, 0.05), 0 8px 20px rgba(17, 24, 39, 0.07);
+
+  /* Shell dimensions */
+  --sidebar-width: 232px;
+  --sidebar-width-collapsed: 68px;
+  --topbar-height: 60px;
+
+  /* Motion — enterprise: quick, no bounce/overshoot */
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --dur-fast: 120ms;
+  --dur-base: 200ms;
+  --dur-slow: 400ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button, input, textarea {
+  font-family: inherit;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--color-blue);
+  outline-offset: 2px;
+}

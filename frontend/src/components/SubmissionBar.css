@@ -1,0 +1,123 @@
+.submission-bar {
+  max-width: 1240px;
+  margin: var(--space-5) auto var(--space-6);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+.submission-bar__heading {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.submission-bar__title {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.submission-bar__hint {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+}
+
+.submission-bar__row {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-3);
+}
+
+.submission-bar__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.submission-bar__field--sender {
+  flex: 0 0 220px;
+}
+
+.submission-bar__field--text {
+  flex: 1 1 auto;
+}
+
+.submission-bar__label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+.submission-bar__input {
+  height: 38px;
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+  color: var(--color-text-primary);
+  font-size: 0.88rem;
+}
+
+.submission-bar__input::placeholder {
+  color: var(--color-text-secondary);
+  opacity: 0.75;
+}
+
+.submission-bar__input:focus {
+  border-color: var(--color-blue);
+  background: var(--color-card);
+}
+
+.submission-bar__button {
+  height: 38px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0 var(--space-4);
+  border: none;
+  border-radius: var(--radius-md);
+  background: var(--color-navy);
+  color: #FFFFFF;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.submission-bar__button:hover {
+  background: #0C3E68;
+}
+
+.submission-bar__button:active {
+  transform: translateY(1px);
+}
+
+@media (max-width: 900px) {
+  .submission-bar {
+    padding: var(--space-4);
+  }
+  .submission-bar__row {
+    flex-wrap: wrap;
+  }
+  .submission-bar__field--sender {
+    flex: 1 1 100%;
+  }
+  .submission-bar__field--text {
+    flex: 1 1 100%;
+  }
+  .submission-bar__button {
+    width: 100%;
+    justify-content: center;
+  }
+}

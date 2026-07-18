@@ -1,0 +1,221 @@
+.ticket-lane {
+  max-width: 1240px;
+  margin: 0 auto var(--space-5);
+  padding: var(--space-6);
+  padding-left: calc(var(--space-6) - 3px);
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  transition: box-shadow var(--dur-fast) var(--ease-standard), transform var(--dur-fast) var(--ease-standard),
+    border-color var(--dur-fast) var(--ease-standard);
+  animation: ticket-lane-enter var(--dur-slow) var(--ease-standard);
+}
+
+@keyframes ticket-lane-enter {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.ticket-lane:hover {
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-2px);
+}
+
+.ticket-lane[role='button'] {
+  cursor: pointer;
+}
+
+.ticket-lane[role='button']:focus-visible {
+  outline: 2px solid var(--color-blue);
+  outline-offset: 2px;
+}
+
+.ticket-lane--decision-escalate {
+  border-left-color: var(--color-escalate);
+}
+
+.ticket-lane--decision-send {
+  border-left-color: var(--color-success);
+}
+
+.ticket-lane--active {
+  border-color: var(--color-blue);
+  border-left-color: var(--color-blue);
+  box-shadow: var(--shadow-card-hover), 0 0 0 1px var(--color-blue);
+  background: var(--tint-blue);
+}
+
+.ticket-lane__meta {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.ticket-lane__id {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+.ticket-lane__sender {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.ticket-lane__track {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+}
+
+.ticket-lane__connector {
+  flex: 0 0 auto;
+  width: 28px;
+  align-self: center;
+  height: 1px;
+  background: var(--color-border);
+  position: relative;
+}
+
+.ticket-lane__connector::after {
+  content: '';
+  position: absolute;
+  right: -1px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  border-right: 1.5px solid var(--color-text-secondary);
+  border-bottom: 1.5px solid var(--color-text-secondary);
+  rotate: -45deg;
+  opacity: 0.5;
+}
+
+.ticket-lane__quote {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--color-text-primary);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.ticket-lane__reason {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+}
+
+.ticket-lane__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.ticket-lane__source {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.ticket-lane__source-label {
+  font-size: 0.72rem;
+  line-height: 1;
+  color: var(--color-text-secondary);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-pill);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.chip--category {
+  background: var(--tint-navy);
+  color: var(--color-navy);
+}
+
+.chip--source {
+  background: var(--tint-neutral);
+  color: var(--color-text-secondary);
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.chip--urgency-low {
+  background: var(--badge-send-bg);
+  color: var(--badge-send-text);
+}
+.chip--urgency-medium {
+  background: var(--badge-escalate-bg);
+  color: var(--badge-escalate-text);
+}
+.chip--urgency-high {
+  background: rgba(220, 38, 38, 0.14);
+  color: var(--badge-escalate-text);
+  border: 1px solid rgba(220, 38, 38, 0.3);
+}
+
+/* ===== Tablet: keep the horizontal pipeline, just tighten spacing ===== */
+@media (max-width: 1024px) {
+  .ticket-lane {
+    padding: var(--space-5);
+  }
+  .ticket-lane__connector {
+    width: 18px;
+  }
+}
+
+/* ===== Mobile: convert each lane to a vertical Triage → Draft → Review flow ===== */
+@media (max-width: 720px) {
+  .ticket-lane {
+    padding: var(--space-4);
+    margin-bottom: var(--space-4);
+  }
+
+  .ticket-lane__track {
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .ticket-lane__connector {
+    width: 1px;
+    height: 20px;
+    align-self: center;
+    margin: 0;
+  }
+
+  .ticket-lane__connector::after {
+    right: 50%;
+    top: -1px;
+    transform: translateX(50%) rotate(45deg);
+  }
+}
+
+.ticket-lane__email {
+  font-size: 0.82rem;
+  color: var(--color-text-secondary);
+}

@@ -1,0 +1,105 @@
+.stats-bar {
+  max-width: 1240px;
+  margin: 0 auto var(--space-7);
+  padding: 0 var(--space-8);
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.stats-bar__card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-width: 0;
+  padding: var(--space-4) var(--space-5);
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  transition: box-shadow var(--dur-fast) var(--ease-standard), transform var(--dur-fast) var(--ease-standard);
+}
+
+.stats-bar__card:hover {
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-1px);
+}
+
+.stats-bar__icon {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-md);
+  background: var(--tint-neutral);
+  color: var(--color-text-secondary);
+}
+
+.stats-bar__text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.stats-bar__value {
+  font-size: 1.35rem;
+  font-weight: 800;
+  line-height: 1.15;
+  color: var(--color-text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.stats-bar__label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.stats-bar__card--blue .stats-bar__icon {
+  background: var(--tint-blue);
+  color: var(--color-blue);
+}
+
+.stats-bar__card--success .stats-bar__icon {
+  background: var(--tint-success, #F0FDF4);
+  color: var(--color-success);
+}
+
+.stats-bar__card--escalate .stats-bar__icon {
+  background: var(--badge-escalate-bg);
+  color: var(--color-escalate);
+}
+
+.stats-bar__card--escalate .stats-bar__value {
+  color: var(--color-escalate);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1024px) {
+  .stats-bar {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .stats-bar {
+    padding: 0 var(--space-4);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 420px) {
+  .stats-bar {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-bar__card {
+    padding: var(--space-3) var(--space-4);
+  }
+}

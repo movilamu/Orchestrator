@@ -1,0 +1,38 @@
+.decision-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-pill);
+  font-size: 0.82rem;
+  font-weight: 700;
+  width: fit-content;
+}
+
+.decision-pill__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.decision-pill__score {
+  font-weight: 600;
+  opacity: 0.75;
+  font-variant-numeric: tabular-nums;
+}
+
+.decision-pill--send {
+  background: var(--badge-send-bg);
+  color: var(--badge-send-text);
+}
+.decision-pill--send .decision-pill__dot {
+  background: var(--color-success);
+}
+
+.decision-pill--escalate {
+  background: var(--badge-escalate-bg);
+  color: var(--badge-escalate-text);
+}
+.decision-pill--escalate .decision-pill__dot {
+  background: var(--color-escalate);
+}

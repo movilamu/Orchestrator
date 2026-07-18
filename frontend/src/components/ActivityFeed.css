@@ -1,0 +1,110 @@
+.activity-feed {
+  min-width: 0;
+  padding: var(--space-5);
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.activity-feed__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.activity-feed__title {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.activity-feed__live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-success);
+  animation: activity-pulse 2s var(--ease-standard) infinite;
+}
+
+@keyframes activity-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+.activity-feed__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.activity-feed__item {
+  display: flex;
+  gap: var(--space-3);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.activity-feed__item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.activity-feed__item--enter {
+  animation: activity-slide-in var(--dur-slow) var(--ease-standard);
+}
+
+@keyframes activity-slide-in {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.activity-feed__dot {
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-top: 6px;
+}
+
+.activity-feed__dot--success {
+  background: var(--color-success);
+}
+
+.activity-feed__dot--fallback {
+  background: var(--color-fallback);
+}
+
+.activity-feed__dot--error {
+  background: var(--color-escalate);
+}
+
+.activity-feed__text {
+  min-width: 0;
+}
+
+.activity-feed__line {
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--color-text-primary);
+}
+
+.activity-feed__category {
+  color: var(--color-text-secondary);
+}
+
+.activity-feed__meta {
+  margin: 2px 0 0;
+  font-size: 0.72rem;
+  color: var(--color-text-secondary);
+}
