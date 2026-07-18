@@ -13,6 +13,12 @@ from reviewer_agent import run_reviewer as _run_reviewer_raw
 app = Flask(__name__)
 CORS(app)
 
+@app.route("/", methods=["GET"])
+def index():
+    return jsonify({
+        "message": "Inbox That Runs Itself — backend is running",
+        "try": "/api/health"
+    })
 # triage_agent / specialist_agent / reviewer_agent raise their own
 # *Error exceptions on failure (TriageError, RuntimeError, ReviewerError)
 # rather than returning a value. app.py's try/except blocks below already
