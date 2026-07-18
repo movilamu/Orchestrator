@@ -14,8 +14,17 @@ class TriageError(Exception):
 
 
 # Groq client picks up GROQ_API_KEY from the environment automatically.
-# You can also pass it explicitly: Groq(api_key="your-key-here")
-client = Groq()
+# Built lazily (not at import time) so a cold-start/env issue raises
+# inside run_triage — which app.py already wraps in try/except — instead
+# of crashing the import of the whole Flask app.
+_client = None
+
+
+def _get_client():
+    global _client
+    if _client is None:
+        _client = Groq()
+    return _client
 
 
 def run_triage(ticket: dict) -> dict:
@@ -47,7 +56,7 @@ def run_triage(ticket: dict) -> dict:
     )
 
     try:
-        response = client.chat.completions.create(
+        response = _get_client().chat.completions.create(
             model="llama-3.1-8b-instant",
             messages=[
                 {"role": "system", "content": system_prompt},
